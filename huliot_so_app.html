@@ -867,24 +867,24 @@ function updateSummaryHeader() {
 // DOWNLOAD CSV
 // ═══════════════════════════════════════════════════════
 function downloadCSV() {
-  if (!cart.length) { showToast('Cart is empty'); return; }
-  const soNo = document.getElementById('so_no').value || 'DRAFT';
-  const date = document.getElementById('order_date').value || new Date().toISOString().split('T')[0];
+  if (!cart.length) { showToast('Cart is empty'); return; }
+  const soNo = document.getElementById('so_no').value || 'DRAFT';
+  const date = document.getElementById('order_date').value || new Date().toISOString().split('T')[0];
 
-  let csv = 'SO No,Date,Sales Person,RERA,Bill To\r\n';
-  csv += `"${soNo}","${date}","${document.getElementById('sales_person').value}","${document.getElementById('rera_no').value}","${document.getElementById('bill_name').value}"\r\n\r\n`;
-  csv += '#,Item Code,Description,DN,HSN,MOQ,Qty,List Price,Disc%,Net Price,Basic Value\r\n';
-  cart.forEach((item,i) => {
-    const basic = (item.qty * item.netPrice).toFixed(2);
-    csv += `${i+1},"${item.code}","${item.desc}","${item.dn}","${item.hsn}",${item.moq},${item.qty},${item.price.toFixed(2)},${(item.disc*100).toFixed(1)}%,${item.netPrice.toFixed(2)},${basic}\r\n`;
-  });
-  const totalBasic = cart.reduce((s,i) => s + i.qty*i.netPrice, 0);
-  csv += `\r\n,,,,,,,,,Total,${totalBasic.toFixed(2)}\r\n`;
+  let csv = 'SO No,Date,Sales Person,RERA,Bill To\r\n';
+  csv += `"${soNo}","${date}","${document.getElementById('sales_person').value}","${document.getElementById('rera_no').value}","${document.getElementById('bill_name').value}"\r\n\r\n`;
+  csv += '#,Item Code,Description,DN,HSN,MOQ,Qty,List Price,Disc%,Net Price,Basic Value\r\n';
+  cart.forEach((item,i) => {
+    const basic = (item.qty * item.netPrice).toFixed(2);
+    csv += `${i+1},"${item.code}","${item.desc}","${item.dn}","${item.hsn}",${item.moq},${item.qty},${item.price.toFixed(2)},${(item.disc*100).toFixed(1)}%,${item.netPrice.toFixed(2)},${basic}\r\n`;
+  });
+  const totalBasic = cart.reduce((s,i) => s + i.qty*i.netPrice, 0);
+  csv += `\r\n,,,,,,,,,Total,${totalBasic.toFixed(2)}\r\n`;
 
-  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = `SO_${soNo}_${date}.csv`; a.click();
-  showToast('CSV downloaded');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `SO_${soNo}_${date}.csv`; a.click();
+  showToast('CSV downloaded');
 }
 
 // ═══════════════════════════════════════════════════════
