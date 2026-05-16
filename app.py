@@ -1,10 +1,10 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# You can update the title for this specific page
-st.set_page_config(page_title="Customer Sales Report", layout="wide", initial_sidebar_state="collapsed")
+# 1. Set to wide mode and hide the sidebar by default
+st.set_page_config(page_title="Huliot SO — Sales Order", layout="wide", initial_sidebar_state="collapsed")
 
-# Hide Streamlit's default top header and completely remove all padding
+# 2. Hide Streamlit's default top header and completely remove all padding
 st.markdown("""
     <style>
         /* Hide the Streamlit top menu bar */
@@ -22,12 +22,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 try:
-    # ⚠️ REPLACE THIS STRING WITH YOUR ACTUAL HTML FILE NAME ⚠️
-    with open("YOUR_NEW_FILE_NAME.html", "r", encoding="utf-8") as f:
+    # 3. Make sure this exactly matches your HTML file name on GitHub!
+    with open("preview GPT.html", "r", encoding="utf-8") as f:
         html_source_code = f.read()
         
-    # Increase height if it cuts off at the bottom, and keep scrolling=False
+    # 4. Height is increased and scrolling is FALSE to fix the double scrollbar
     components.html(html_source_code, height=1200, scrolling=False)
 
 except FileNotFoundError:
-    st.error("Could not find the file. Please make sure it is in the same folder.")
+    st.error("Could not find the HTML file. Please make sure the file name matches exactly.")
