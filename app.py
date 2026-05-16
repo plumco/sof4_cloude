@@ -15,7 +15,7 @@ try:
     with open("huliot_so_app.html", "r", encoding="utf-8") as f:
         html_source_code = f.read()
         
-    components.html(html_source_code, height=1100, scrolling=False)
+    components.html(html_source_code, height=1400, scrolling=False)
 
 except FileNotFoundError:
     # Notice the 4 spaces before "st.error"!
